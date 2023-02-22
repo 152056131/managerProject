@@ -22,7 +22,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 //为当前包路径,控制器类包
-                .apis(RequestHandlerSelectors.basePackage("com.example.springbootdemo.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.springbootdemo.common.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
