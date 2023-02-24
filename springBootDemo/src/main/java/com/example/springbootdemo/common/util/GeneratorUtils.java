@@ -44,8 +44,8 @@ public class GeneratorUtils {
         dsc.setUrl("jdbc:mysql://127.0.0.1:3306/kevin?userUnicode=true&characterEncoding=utf8");
         dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-        dsc.setUsername("debian-sys-maint");
-        dsc.setPassword("16xQp0x66siNl9KU");
+        dsc.setUsername("kevin");
+        dsc.setPassword("960713");
 
         return dsc;
     }

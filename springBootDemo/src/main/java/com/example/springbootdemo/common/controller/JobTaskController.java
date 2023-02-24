@@ -17,5 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/common/jobTask")
 public class JobTaskController {
 
+
 }
 
