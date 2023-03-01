@@ -102,7 +102,6 @@
     <orderEntry type="library" name="Maven: org.mybatis:mybatis-spring:2.0.5" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-boot-starter:3.4.1" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus:3.4.1" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.5.6" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-generator:3.4.0" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-extension:3.4.0" level="project" />
     <orderEntry type="library" name="Maven: com.baomidou:mybatis-plus-core:3.4.0" level="project" />
@@ -161,8 +160,9 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.3.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.8.3" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-devtools:2.5.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.5.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.5.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-devtools:2.5.6" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.7.30" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />

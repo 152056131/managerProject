@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponse;
 import com.aliyun.teaopenapi.models.Config;
+import org.springframework.web.servlet.ModelAndView;
 
 public class SendSms {
     public static com.aliyun.dysmsapi20170525.Client createClient(String accessKeyId, String accessKeySecret) throws Exception {
@@ -22,8 +23,8 @@ public class SendSms {
         com.aliyun.dysmsapi20170525.Client client = SendSms.createClient("LTAI5tRmG1rnXrNg7sbHabac", "WDC7dhoMzzu4lgjBCQs6AhPtdzLfto");
         SendSmsRequest sendSmsRequest = new SendSmsRequest()
                 .setPhoneNumbers(phone) // 手机号
-                .setSignName("****") // 短信签名名称
-                .setTemplateCode("SMS_271550069") // 短信模板CODE
+                .setSignName("杨顺凯专属") // 短信签名名称
+                .setTemplateCode("SMS_271565107") // 短信模板CODE
                 .setTemplateParam(verify); // 验证码
         SendSmsResponse sendSmsResponse = client.sendSms(sendSmsRequest);
         jsonObject.put("Code", sendSmsResponse.getBody().getCode());
