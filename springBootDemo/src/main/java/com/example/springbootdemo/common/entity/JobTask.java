@@ -23,6 +23,8 @@ public class JobTask implements Serializable {
 
     private Integer id;
 
+
+
     private String groupid;
 
     private String name;
