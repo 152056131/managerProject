@@ -29,11 +29,12 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script>
     $(function () {
-        $("#login_btn").click(function () {
+
+        $("#login").click(function () {
 
             var customerid = $("#user").val();
             var password = $("#pass").val();
-
+            sessionStorage.setItem("customerid",customerid);
             if (customerid == "" || customerid.length <= 1) {
                 alert("用户名不能为空");
                 $("#user").focus();
@@ -55,8 +56,7 @@
                 data: {customerid: customerid, password: password},
                 success: function (message) {
                     if (message == "1") {
-                        // sessionStorage.setItem("username",JSON.stringify(customerid))
-                        window.location.href = 'http://localhost:8080/index?customerid='+customerid;
+                        window.location.href = 'http://localhost:8080/index?customerid='+customerid+"&password="+password;
                         window.event.returnValue = false;
                     } else {
                         alter("密码错误");

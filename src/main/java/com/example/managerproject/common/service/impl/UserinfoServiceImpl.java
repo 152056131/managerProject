@@ -36,5 +36,17 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         return userinfoMapper.selectOne(queryWrapper);
     }
 
+    /**
+     * @Description 修改密码
+     * @Author kevin
+     * @Date 2023/9/15 下午4:01
+     * @Version 1.0
+     */
+    public int updatePassword(Userinfo userinfo) {
+        QueryWrapper<Userinfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("customerid", userinfo.getCustomerid());
+        System.out.println(userinfo.getCustomerid());
+        return userinfoMapper.update(userinfo, queryWrapper);
+    }
 
 }
