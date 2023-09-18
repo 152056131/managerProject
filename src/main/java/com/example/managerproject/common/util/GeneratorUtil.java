@@ -61,7 +61,7 @@ public class GeneratorUtil {
         gc.setOutputDir(path + "/src/main/java");//参数是一个目录，所以需要获取当前系统目录
         gc.setAuthor("kevin");
         gc.setOpen(true);//是否打开资源管理器
-        gc.setFileOverride(true);//是否覆盖已经生成的
+        gc.setFileOverride(false);//是否覆盖已经生成的
         gc.setServiceName("%sService");//去service的I前缀
         gc.setIdType(IdType.INPUT);// id生成策略
         gc.setDateType(DateType.ONLY_DATE);
