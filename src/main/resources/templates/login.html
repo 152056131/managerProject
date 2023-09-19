@@ -31,7 +31,6 @@
     $(function () {
 
         $("#login").click(function () {
-
             var customerid = $("#user").val();
             var password = $("#pass").val();
             sessionStorage.setItem("customerid",customerid);
@@ -45,8 +44,9 @@
                 $("#pass").focus();
                 return false;
             }
+            alert(23456)
             getUserDep(customerid, password);
-            alert(123)
+            alert(123123)
         });
 
         function getUserDep(customerid, password) {
