@@ -1,14 +1,12 @@
 package com.example.managerproject.common.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.managerproject.common.entity.Userinfo;
 import com.example.managerproject.common.mapper.UserinfoMapper;
 import com.example.managerproject.common.service.UserinfoService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * <p>
@@ -19,7 +17,7 @@ import java.util.List;
  * @since 2023-09-13
  */
 @Service
-public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> implements UserinfoService {
+public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> implements UserinfoService{
     @Autowired
     private UserinfoMapper userinfoMapper;
 
@@ -48,5 +46,6 @@ public class UserinfoServiceImpl extends ServiceImpl<UserinfoMapper, Userinfo> i
         System.out.println(userinfo.getCustomerid());
         return userinfoMapper.update(userinfo, queryWrapper);
     }
+
 
 }

@@ -27,7 +27,7 @@ public class LoginController {
         userinfo.setPassword(password);
         Userinfo result = userinfoService.findUserInfo(userinfo);
         model.addAttribute("userName",result.getName());
-        return "/index";
+        return "index";
     }
 
 }

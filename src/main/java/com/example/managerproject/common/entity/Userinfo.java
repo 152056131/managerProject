@@ -5,13 +5,15 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author kevin
@@ -24,12 +26,14 @@ public class Userinfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-      @TableId(value = "customerId", type = IdType.INPUT)
+    @TableId(value = "customerId", type = IdType.INPUT)
     private String customerid;
 
     private String name;
 
     private String password;
+
+    private String iseffective;
 
     @TableField("createTime")
     private String createtime;
