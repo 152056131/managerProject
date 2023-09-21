@@ -1,6 +1,6 @@
 package com.example.managerproject.common.mapper;
 
-import com.example.managerproject.common.entity.Userinfo;
+import com.example.managerproject.common.entity.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author kevin
  * @since 2023-09-13
  */
-public interface UserinfoMapper extends BaseMapper<Userinfo> {
+public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
 }

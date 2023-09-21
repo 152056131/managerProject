@@ -9,7 +9,6 @@ function Workload() {
             method: "get",
             striped: true,
             singleSelect: false,
-
             dataType: "json",
             pagination: true, //分页
             pageSize: 10,
@@ -83,15 +82,18 @@ function getWorkTableData() {
         workTitle = $("#tit").val();
         Publisher = $("#person").val();
         workTime = $("#demo").val();
+
     }
     $.ajax({
         type: "GET",
-        url: "../WorkRecord/SearchWork?dtStart=" +workTitle + "&dtEnd=" + Publisher + "&dtEnd=" + workTime,
+        data: {customerid: workTitle, username: Publisher,createTime: workTime,pageSize:$('#table').bootstrapTable('getOptions').pageSize,pageNumber: $('#table').bootstrapTable('getOptions').pageNumber},
+        url: "http://localhost:8080/WorkRecord/SearchWork",
         dataType: "json",
         success: function (result) {
-            if (result.data) {
-                var NoticeTableData = result.data;
-                $('#table').bootstrapTable("load", NoticeTableData);
+            if (result) {
+                console.log(result)
+                // var NoticeTableData = result.data;
+                // $('#table').bootstrapTable("load", NoticeTableData);
             }
         }
     })

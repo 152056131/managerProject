@@ -1,6 +1,6 @@
 package com.example.managerproject.common.service;
 
-import com.example.managerproject.common.entity.Userinfo;
+import com.example.managerproject.common.entity.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author kevin
  * @since 2023-09-13
  */
-public interface UserinfoService extends IService<Userinfo> {
+public interface UserInfoService extends IService<UserInfo> {
 
 }

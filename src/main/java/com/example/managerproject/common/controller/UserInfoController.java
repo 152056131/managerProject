@@ -1,8 +1,8 @@
 package com.example.managerproject.common.controller;
 
 
-import com.example.managerproject.common.entity.Userinfo;
-import com.example.managerproject.common.service.impl.UserinfoServiceImpl;
+import com.example.managerproject.common.entity.UserInfo;
+import com.example.managerproject.common.service.impl.UserInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/common/userinfo")
-public class UserinfoController {
+public class UserInfoController {
 
     @Autowired
-    private UserinfoServiceImpl userinfoService;
+    private UserInfoServiceImpl userinfoService;
 
     /**
      * @Description 登录验证
@@ -31,8 +31,8 @@ public class UserinfoController {
      */
     @RequestMapping("login")
     @ResponseBody
-    public String loginIndex(Userinfo userinfo) {
-        Userinfo userinfoList = userinfoService.findUserInfo(userinfo);
+    public String loginIndex(UserInfo userinfo) {
+        UserInfo userinfoList = userinfoService.findUserInfo(userinfo);
         if(userinfoList !=null){
             return "1";
         }
@@ -46,7 +46,7 @@ public class UserinfoController {
      */
     @RequestMapping("updatePassword")
     @ResponseBody
-    public int updatePassword(Userinfo userinfo){
+    public int updatePassword(UserInfo userinfo){
        return userinfoService.updatePassword(userinfo);
     }
 }
