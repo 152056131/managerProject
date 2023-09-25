@@ -1,11 +1,14 @@
 package com.example.managerproject.common.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,31 +30,36 @@ public class FmBankHierarchy implements Serializable {
     /**
      * 层级代码|层级代码
      */
-      @TableId(value = "HIERARCHY_CODE", type = IdType.INPUT)
+    @TableId(value = "HIERARCHY_CODE", type = IdType.INPUT)
+    @ExcelProperty
     private String hierarchyCode;
 
     /**
      * 层级说明|层级说明
      */
     @TableField("HIERARCHY_NAME")
+    @ExcelProperty
     private String hierarchyName;
 
     /**
      * 分行级别|分行级别
      */
     @TableField("HIERARCHY_LEVEL")
+    @ExcelProperty
     private String hierarchyLevel;
 
     /**
      * 法人|法人
      */
     @TableField("COMPANY")
+    @ExcelProperty
     private String company;
 
     /**
      * 交易时间戳|交易时间戳
      */
     @TableField("TRAN_TIMESTAMP")
+    @ExcelProperty
     private String tranTimestamp;
 
 

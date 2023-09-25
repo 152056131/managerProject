@@ -27,7 +27,7 @@ public class WorkLogServiceImpl extends ServiceImpl<WorkLogMapper, WorkLog> impl
 
     public Page<WorkLog> findWorkList(WorkLog workLog,Integer pageSize,Integer pageNumber) {
         QueryWrapper<WorkLog> queryWrapper = new QueryWrapper<WorkLog>();
-        queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getCustomerid()), "customerid", workLog.getCustomerid());
+        queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getId()), "id", workLog.getId());
         queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getUsername()), "username", workLog.getUsername());
         queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getCreateTime()), "create_Time", workLog.getCreateTime());
         Page<WorkLog> workLogPage = workLogMapper.selectPage(new Page(pageNumber,pageSize),queryWrapper);

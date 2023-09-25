@@ -6,8 +6,12 @@ import com.example.managerproject.common.entity.WorkLog;
 import com.example.managerproject.common.service.impl.WorkLogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -40,6 +44,21 @@ public class WorkLogController {
     @ResponseBody
     public Page<WorkLog> showWorkList(WorkLog workLog, Integer pageSize, Integer pageNumber) {
         return workLogService.findWorkList(workLog,pageSize,pageNumber);
+    }
+
+    /**
+     * @Description 新增工作日志
+     * @Author kevin
+     * @Date 2023/9/25 下午1:50
+     * @Version 1.0
+     */
+    @RequestMapping("work_tail")
+    public String addWorkLog(Model model){
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        String id = simpleDateFormat.format(date);
+        model.addAttribute("id",id);
+        return "work_tail";
     }
 
 }

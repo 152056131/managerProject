@@ -1,5 +1,6 @@
 package com.example.managerproject.common.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.Version;
@@ -27,15 +28,17 @@ public class UserInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "customerId", type = IdType.INPUT)
+    @ExcelProperty
     private String customerid;
-
+    @ExcelProperty
     private String name;
-
+    @ExcelProperty
     private String password;
-
+    @ExcelProperty
     private String iseffective;
 
     @TableField("createTime")
+    @ExcelProperty
     private String createtime;
 
 

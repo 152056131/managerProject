@@ -24,37 +24,31 @@ function Workload() {
                     valign: 'middle'
                 },
                 {
-                    title: "编号",
-                    field: 'class',
+                    title: "日志编号",
+                    field: 'id',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
-                    title: '日志标题',
-                    field: 'sex',
+                    title: '用户编号',
+                    field: 'customerid',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
                     title: '发布人',
-                    field: 'type',
+                    field: 'username',
                     align: 'center'
                 },
                 {
                     title: '发布时间',
-                    field: 'name',
-                    align: 'center',
-                    valign: 'middle'
-                },
-                {
-                    title: '执行时间',
-                    field: 'name',
+                    field: 'createTime',
                     align: 'center',
                     valign: 'middle'
                 },
                 {
                     title: '发布内容',
-                    field: 'work',
+                    field: 'workContext',
                     align: 'center'
                 },
                 {
@@ -86,14 +80,14 @@ function getWorkTableData() {
     }
     $.ajax({
         type: "GET",
-        data: {customerid: workTitle, username: Publisher,createTime: workTime,pageSize:$('#table').bootstrapTable('getOptions').pageSize,pageNumber: $('#table').bootstrapTable('getOptions').pageNumber},
+        data: {id: workTitle, username: Publisher,createTime: workTime,pageSize:$('#table').bootstrapTable('getOptions').pageSize,pageNumber: $('#table').bootstrapTable('getOptions').pageNumber},
         url: "http://localhost:8080/WorkRecord/SearchWork",
         dataType: "json",
         success: function (result) {
             if (result) {
-                console.log(result)
-                // var NoticeTableData = result.data;
-                // $('#table').bootstrapTable("load", NoticeTableData);
+                console.log(result.records)
+                 var NoticeTableData = result.records;
+                 $('#table').bootstrapTable("load", NoticeTableData);
             }
         }
     })
@@ -139,7 +133,7 @@ function openlayer() {
         area: ['98%', '98%'],
         shadeClose: true,
         closeBtn: 2,
-        content:" work_tail"
+        content:"http://localhost:8080/work_tail"
 
     });
     

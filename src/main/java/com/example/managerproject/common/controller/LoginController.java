@@ -26,6 +26,7 @@ public class LoginController {
         userinfo.setPassword(password);
         UserInfo result = userinfoService.findUserInfo(userinfo);
         model.addAttribute("userName",result.getName());
+        model.addAttribute("customerid",userinfo.getCustomerid());
         return "index";
     }
 
