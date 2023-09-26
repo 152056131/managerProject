@@ -43,7 +43,9 @@
                 return false;
             }
             alert(21)
+
             getUserDep(customerid, password);
+            alert(12)
         });
 
         function getUserDep(customerid, password) {
@@ -53,6 +55,7 @@
                 data: {customerid: customerid, password: password},
                 success: function (message) {
                     if (message == "1") {
+                        sessionStorage.setItem("customerid",customerid);
                         window.location.href = 'http://localhost:8080/index?customerid='+customerid+"&password="+password;
                         window.event.returnValue = false;
                     } else {

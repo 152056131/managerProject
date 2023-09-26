@@ -1,22 +1,19 @@
 package com.example.managerproject.common.entity;
 
-import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.Version;
 import com.baomidou.mybatisplus.annotation.TableId;
-
-import java.io.Serializable;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author kevin
- * @since 2023-09-21
+ * @since 2023-09-26
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -24,17 +21,36 @@ public class WorkLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.INPUT)
-    @ExcelProperty
+    /**
+     * 日志编号
+     */
+      @TableId(value = "id", type = IdType.INPUT)
     private String id;
-    @ExcelProperty
+
+    /**
+     * 客户号
+     */
     private String customerid;
-    @ExcelProperty
+
+    /**
+     * 创建时间
+     */
     private String createTime;
-    @ExcelProperty
+
+    /**
+     * 日志内容
+     */
     private String workContext;
-    @ExcelProperty
+
+    /**
+     * 用户名
+     */
     private String username;
+
+    /**
+     * 文字格式
+     */
+    private String elementPath;
 
 
 }

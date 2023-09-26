@@ -7,6 +7,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
     <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/layer_v2.1/layer/layer.js"></script>
     <script>
         function change() {
             var height01 = $(window).height();
@@ -25,19 +26,16 @@
                     <tbody>
                     <tr>
                         <td>编号：<i class="i_start"></i></td>
-                        <td style="text-align: left"><input type="text" name="name" minlength="2" th:value="${id}" disabled="disabled"></td>
+                        <td style="text-align: left"><input id="id" type="text" name="id" minlength="2" th:value="${id}"
+                                                            disabled="disabled"></td>
                         <td>发布人：</td>
-                        <td colspan="3" style="text-align: left"><input type="text" class="long_text"></td>
+                        <td colspan="3" style="text-align: left"><input id="username" type="text" class="long_text"
+                                                                        name="username"></td>
                     </tr>
-                    <tr>
-                        <td>执行时间：</td>
-                        <td style="text-align: left"><input type="text"></td>
-                        <td>执行人：</td>
-                        <td colspan="3" style="text-align: left"><input type="text" class="long_text"></td>
-                    </tr>
+
                     <tr>
                         <td style="line-height: 340px">发布内容：</td>
-                        <td colspan="8" style="text-align: left"><textarea id="editor"
+                        <td colspan="8" style="text-align: left"><textarea name="text" id="logo-text"
                                                                            style="width: 100%;height: 240px"></textarea>
                         </td>
                     </tr>
@@ -46,7 +44,7 @@
             </div>
         </div>
         <div class="bot_btn">
-            <input type="submit" class="btn" value="保存">
+            <input type="button" class="btn" value="保存" id="saveWorkLog">
             <button class="btn btn1"><a href="notice.html" target="right">返回</a></button>
         </div>
     </div>
@@ -58,6 +56,28 @@
 
 <script>
     var ue = UE.getEditor('editor');
+    $("#username").val(sessionStorage.getItem("username"));
+    $(function () {
+        $('#saveWorkLog').click(function () {
+            $.ajax({
+                type: "post",
+                url: "http://localhost:8080/common/addworkLog",
+                data: {
+                    id: $('#id').val(),
+                    username: $('#username').val(),
+                    workContext: $('#logo-text').val(),
+                    customerid: sessionStorage.getItem("customerid")
+                },
+                success: function (message) {
+                    if (message == 1) {
+                        alert("插入成功")
+                    } else {
+                        alert("插入失败")
+                    }
+                }
+            })
+        });
+    });
 
     function isFocus(e) {
         alert(UE.getEditor('editor').isFocus());
@@ -184,8 +204,8 @@
     //alert("修改成功");
     //}
     //});
-    $().ready(function () {
-        $("#form_demo").validate();
-    });
+    // $().ready(function () {
+    //     $("#form_demo").validate();
+    // });
 </script>
 </html>

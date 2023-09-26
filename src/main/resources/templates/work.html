@@ -71,7 +71,7 @@
 <div class="table-box">
     <table id="table" class="table_style"></table>
 </div>
-<div class="pagination ue-clear"></div>
+<div class="pagination ue-clear"><span id="pre">上一页</span><span><input type="text" id="page" width="50px"></span><span id="next">下一页</span></div>
 </body>
 <script type="text/javascript" src="js/jquery.js"></script>
 
@@ -90,7 +90,15 @@
 <script src="js/layer_v2.1/layer/layer.js"></script>
 <script>
     $(function () {
-        function addTableData(){}
+        $('#pre').click(function(){
+               $('#table').bootstrapTable("getOptions").pageNumber--;
+               getWorkTableData();
+        });
+        $('#next').click(function(){
+            alert(123)
+            $('#table').bootstrapTable("getOptions").pageNumber++;
+            getWorkTableData();
+        })
     });
 </script>
 <!--<script type="text/javascript">-->

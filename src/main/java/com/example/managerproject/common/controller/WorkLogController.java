@@ -7,8 +7,7 @@ import com.example.managerproject.common.service.impl.WorkLogServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,7 +42,7 @@ public class WorkLogController {
     @RequestMapping("WorkRecord/SearchWork")
     @ResponseBody
     public Page<WorkLog> showWorkList(WorkLog workLog, Integer pageSize, Integer pageNumber) {
-        return workLogService.findWorkList(workLog,pageSize,pageNumber);
+        return workLogService.findWorkList(workLog, pageSize, pageNumber);
     }
 
     /**
@@ -53,12 +52,20 @@ public class WorkLogController {
      * @Version 1.0
      */
     @RequestMapping("work_tail")
-    public String addWorkLog(Model model){
+    public String addWork(Model model) {
         Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHMMss");
         String id = simpleDateFormat.format(date);
-        model.addAttribute("id",id);
+        model.addAttribute("id", id);
+
         return "work_tail";
+    }
+
+    @RequestMapping("common/addworkLog")
+    @ResponseBody
+    public int addWorkLog(WorkLog workLog) {
+       return workLogService.addWorkLog(workLog);
+
     }
 
 }

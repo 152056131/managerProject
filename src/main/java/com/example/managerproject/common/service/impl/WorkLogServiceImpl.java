@@ -10,6 +10,9 @@ import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * <p>
  * 服务实现类
@@ -25,12 +28,20 @@ public class WorkLogServiceImpl extends ServiceImpl<WorkLogMapper, WorkLog> impl
     private WorkLogMapper workLogMapper;
 
 
-    public Page<WorkLog> findWorkList(WorkLog workLog,Integer pageSize,Integer pageNumber) {
+    public Page<WorkLog> findWorkList(WorkLog workLog, Integer pageSize, Integer pageNumber) {
         QueryWrapper<WorkLog> queryWrapper = new QueryWrapper<WorkLog>();
         queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getId()), "id", workLog.getId());
         queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getUsername()), "username", workLog.getUsername());
         queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getCreateTime()), "create_Time", workLog.getCreateTime());
-        Page<WorkLog> workLogPage = workLogMapper.selectPage(new Page(pageNumber,pageSize),queryWrapper);
+        Page<WorkLog> workLogPage = workLogMapper.selectPage(new Page(pageNumber, pageSize), queryWrapper);
         return workLogPage;
+    }
+
+    public int addWorkLog(WorkLog workLog) {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String createDate = simpleDateFormat.format(date);
+        workLog.setCreateTime(createDate);
+        return workLogMapper.insert(workLog);
     }
 }

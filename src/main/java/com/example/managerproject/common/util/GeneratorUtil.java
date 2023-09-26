@@ -77,7 +77,7 @@ public class GeneratorUtil {
         PackageConfig pc = new PackageConfig();
         pc.setModuleName("common");
         pc.setParent("com.example.managerproject");
-        pc.setEntity("entity");
+        pc.setEntity("entity1");
         pc.setMapper("mapper");
         pc.setService("service");
         pc.setController("controller");
