@@ -11,9 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ManagerProjectApplication {
 
     public static void main(String[] args) {
-        log.info("info");
-        log.error("error");
-
         SpringApplication.run(ManagerProjectApplication.class, args);
     }
 

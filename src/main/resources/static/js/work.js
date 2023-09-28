@@ -3,22 +3,39 @@
  */
 
 var workTitle, Publisher, currentID, workTime, flag = true;
+
 function Workload() {
     $(function () {
         $('#table').bootstrapTable({
-            method: "get",
+            url: "http://localhost:8080/WorkRecord/SearchWork",
+            cache: false, //
             striped: true,
-            singleSelect: false,
-            dataType: "json",
-            pagination: true, //分页
-            pageSize: 10,
+            pageList: [5,10,15],
             pageNumber: 1,
-            search: false, //显示搜索框
+            pageSize: 10,
+            paginationNextText: "下一页",
+            paginationPreText: "上一页",
+            sidePagination: "server",
+            showRefresh: true,
+            pagination: true,
+            showPaginationSwitch: true,
+            smartDisplay: false,
             contentType: "application/x-www-form-urlencoded",
-            queryParams: null,
+            queryParams: function () {
+                return {
+                    pageSize: this.pageSize,
+                    pageNumber: this.pageNumber,
+                    id: $("#tit").val(),
+                    username: $("#person").val(),
+                    createTime: $("#demo").val()
+                }
+            },
+            onLoadSuccess(res) {
+                console.log(res)
+            },
             columns: [
                 {
-                    checkbox:"true",
+                    checkbox: "true",
                     field: 'ID',
                     align: 'center',
                     valign: 'middle'
@@ -66,6 +83,7 @@ function Workload() {
     });
     getWorkTableData();
 }
+
 function getWorkTableData() {
     if (flag) {
         workTitle = "";
@@ -78,28 +96,31 @@ function getWorkTableData() {
         workTime = $("#demo").val();
 
     }
-    $.ajax({
-        type: "GET",
-        data: {id: workTitle, username: Publisher,createTime: workTime,pageSize:$('#table').bootstrapTable('getOptions').pageSize,pageNumber: $('#table').bootstrapTable('getOptions').pageNumber},
-        url: "http://localhost:8080/WorkRecord/SearchWork",
-        dataType: "json",
-        success: function (result) {
-            if (result) {
-                console.log(result.records)
-                 var NoticeTableData = result.records;
-                 $('#table').bootstrapTable("load", NoticeTableData);
-            }
-        }
-    })
+    // $.ajax({
+    //     type: "GET",
+    //     data: {id: workTitle, username: Publisher, createTime: workTime},
+    //     url: "http://localhost:8080/WorkRecord/SearchWork",
+    //     dataType: "json",
+    //     success: function (result) {
+    //         if (result) {
+    //             console.log(result.records)
+    //             var NoticeTableData = result.records;
+    //             $('#table').bootstrapTable("load", NoticeTableData);
+    //         }
+    //     }
+    // })
 }
+
 function addWork() {
     openlayer()
     currentID = "";
 }
+
 function editWork(id) {
     openlayer()
     currentID = id;
 }
+
 function outWork(id) {
     alert(id)
     var NoticeId = id;
@@ -119,9 +140,11 @@ function outWork(id) {
         }
     });
 }
+
 function getCurrentID() {
     return currentID;
 }
+
 function openlayer() {
     layer.open({
         type: 2,
@@ -133,10 +156,10 @@ function openlayer() {
         area: ['98%', '98%'],
         shadeClose: true,
         closeBtn: 2,
-        content:"http://localhost:8080/work_tail"
+        content: "http://localhost:8080/work_tail"
 
     });
-    
+
 }
 
 

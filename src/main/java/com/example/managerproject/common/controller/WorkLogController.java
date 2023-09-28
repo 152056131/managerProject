@@ -1,16 +1,22 @@
 package com.example.managerproject.common.controller;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.alibaba.fastjson.JSON;
 import com.example.managerproject.common.entity.WorkLog;
 import com.example.managerproject.common.service.impl.WorkLogServiceImpl;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -22,6 +28,7 @@ import java.util.Date;
  * @since 2023-09-21
  */
 @Controller
+@Slf4j
 public class WorkLogController {
 
     @Autowired
@@ -41,8 +48,16 @@ public class WorkLogController {
      */
     @RequestMapping("WorkRecord/SearchWork")
     @ResponseBody
-    public Page<WorkLog> showWorkList(WorkLog workLog, Integer pageSize, Integer pageNumber) {
-        return workLogService.findWorkList(workLog, pageSize, pageNumber);
+    public Map<String,List> showWorkList(WorkLog workLog, Integer pageSize, Integer pageNumber) {
+        for(WorkLog list:workLogService.findWorkList(workLog,pageSize,pageNumber)){
+            System.out.println(list);
+            System.out.println("======================");
+        }
+        Map map = new HashMap();
+        map.put("total",workLogService.findWorkList(workLog,pageSize,pageNumber).size());
+        List list = workLogService.findWorkList(workLog,pageSize,pageNumber);
+        map.put("rows",list);
+        return map;
     }
 
     /**

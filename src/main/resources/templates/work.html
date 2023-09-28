@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap-table.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="css/base.css"/>
-    <link rel="stylesheet" href="css/info-mgt.css"/>
+    <link href="css/base.css" rel="stylesheet"/>
+    <link href="css/info-mgt.css" rel="stylesheet"/>
     <style>
         .layui-layer-title {
             background: url(images/righttitlebig.png) repeat-x;
@@ -54,26 +54,27 @@
 <div class="title"><h2>工作日志</h2></div>
 <div class="query">
     <div class="tabe_bot">
-        <div class="l_left"><label>日志编号：</label><input type="text" placeholder="请输入编号" id="tit"></div>
-        <div class="l_left"><label>发布人：</label><input type="text" placeholder="请输入姓名" id="person"></div>
+        <div class="l_left"><label>日志编号：</label><input id="tit" placeholder="请输入编号" type="text"></div>
+        <div class="l_left"><label>发布人：</label><input id="person" placeholder="请输入姓名" type="text"></div>
         <div class="l_left"><label>发布时间：</label><input id="demo" placeholder="输入年月"/></div>
         <button class="tabe_btn " onclick=" getWorkTableData();">查询</button>
         <div class="clear"></div>
     </div>
 </div>
 <div class="table-operate ue-clear">
-    <a href="#" class="add" onclick="addWork()">添加</a>
-    <a href="javascript:;" class="out" onclick="outWork()">导出</a>
-    <a href="javascript:;" class="edit">编辑</a>
-    <a href="javascript:;" class="count">统计</a>
-    <a href="javascript:;" class="check">审核</a>
+    <a class="add" href="#" onclick="addWork()">添加</a>
+    <a class="out" href="javascript:" onclick="outWork()">导出</a>
+    <a class="edit" href="javascript:">编辑</a>
+    <a class="count" href="javascript:">统计</a>
+    <a class="check" href="javascript:">审核</a>
 </div>
 <div class="table-box">
-    <table id="table" class="table_style"></table>
+    <table class="table_style table" id="table"></table>
 </div>
-<div class="pagination ue-clear"><span id="pre">上一页</span><span><input type="text" id="page" width="50px"></span><span id="next">下一页</span></div>
+<div class="pagination"></div>
+
 </body>
-<script type="text/javascript" src="js/jquery.js"></script>
+<script src="js/jquery.js" type="text/javascript"></script>
 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-table.js"></script>
@@ -90,15 +91,7 @@
 <script src="js/layer_v2.1/layer/layer.js"></script>
 <script>
     $(function () {
-        $('#pre').click(function(){
-               $('#table').bootstrapTable("getOptions").pageNumber--;
-               getWorkTableData();
-        });
-        $('#next').click(function(){
-            alert(123)
-            $('#table').bootstrapTable("getOptions").pageNumber++;
-            getWorkTableData();
-        })
+
     });
 </script>
 <!--<script type="text/javascript">-->
