@@ -1,15 +1,14 @@
 package com.example.managerproject.common.controller;
 
 
-import com.alibaba.fastjson.JSON;
 import com.example.managerproject.common.entity.WorkLog;
 import com.example.managerproject.common.service.impl.WorkLogServiceImpl;
-import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
@@ -48,15 +47,14 @@ public class WorkLogController {
      */
     @RequestMapping("WorkRecord/SearchWork")
     @ResponseBody
-    public Map<String,List> showWorkList(WorkLog workLog, Integer pageSize, Integer pageNumber) {
-        for(WorkLog list:workLogService.findWorkList(workLog,pageSize,pageNumber)){
-            System.out.println(list);
-            System.out.println("======================");
-        }
+    public Map<String, List> showWorkList(WorkLog workLog) {
+        /**
+         * 前端页面加载数据时需要后端提供total,rows两种数据
+         */
         Map map = new HashMap();
-        map.put("total",workLogService.findWorkList(workLog,pageSize,pageNumber).size());
-        List list = workLogService.findWorkList(workLog,pageSize,pageNumber);
-        map.put("rows",list);
+        map.put("total", workLogService.findWorkList(workLog).size());
+        List list = workLogService.findWorkList(workLog);
+        map.put("rows", list);
         return map;
     }
 
@@ -67,11 +65,15 @@ public class WorkLogController {
      * @Version 1.0
      */
     @RequestMapping("work_tail")
-    public String addWork(Model model) {
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHMMss");
-        String id = simpleDateFormat.format(date);
-        model.addAttribute("id", id);
+    public String addWork(Model model, @RequestParam("option") String option) {
+        if(option.equals("add")){
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHMMss");
+            String id = simpleDateFormat.format(date);
+            model.addAttribute("id", id);
+        }else if(option.equals("edit")){
+
+        }
 
         return "work_tail";
     }
@@ -79,8 +81,7 @@ public class WorkLogController {
     @RequestMapping("common/addworkLog")
     @ResponseBody
     public int addWorkLog(WorkLog workLog) {
-       return workLogService.addWorkLog(workLog);
-
+        return workLogService.addWorkLog(workLog);
     }
 
 }

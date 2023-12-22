@@ -1,16 +1,16 @@
 package com.example.managerproject.common.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.managerproject.common.entity.WorkLog;
 import com.example.managerproject.common.mapper.WorkLogMapper;
 import com.example.managerproject.common.service.WorkLogService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,13 +29,13 @@ public class WorkLogServiceImpl extends ServiceImpl<WorkLogMapper, WorkLog> impl
     private WorkLogMapper workLogMapper;
 
 
-    public List<WorkLog> findWorkList(WorkLog workLog, Integer pageSize, Integer pageNumber) {
+    public List<WorkLog> findWorkList(WorkLog workLog) {
         QueryWrapper<WorkLog> queryWrapper = new QueryWrapper<WorkLog>();
         queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getId()), "id", workLog.getId());
         queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getUsername()), "username", workLog.getUsername());
-        queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getCreateTime()), "create_Time", workLog.getCreateTime());
-        Page<WorkLog> workLogPage = workLogMapper.selectPage(new Page(pageNumber, pageSize), queryWrapper);
-        List list = workLogPage.getRecords();
+        queryWrapper.like(!StringUtils.isNullOrEmpty(workLog.getCreateTime()), "createTime", workLog.getCreateTime());
+        List list = new ArrayList();
+        list = workLogMapper.selectList(queryWrapper);
         return list;
     }
 

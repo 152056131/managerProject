@@ -7,8 +7,8 @@ var workTitle, Publisher, currentID, workTime, flag = true;
 function Workload() {
     $(function () {
         $('#table').bootstrapTable({
-            url: "http://localhost:8080/WorkRecord/SearchWork",
-            cache: false, //
+            url: "/WorkRecord/SearchWork",
+            cache: false,
             striped: true,
             pageList: [5,10,15],
             pageNumber: 1,
@@ -25,13 +25,10 @@ function Workload() {
                 return {
                     pageSize: this.pageSize,
                     pageNumber: this.pageNumber,
-                    id: $("#tit").val(),
-                    username: $("#person").val(),
-                    createTime: $("#demo").val()
+                    id: $("#idno").val(),
+                    username : $("#username").val(),
+                    createTime : $("#create_time").val()
                 }
-            },
-            onLoadSuccess(res) {
-                console.log(res)
             },
             columns: [
                 {
@@ -91,33 +88,31 @@ function getWorkTableData() {
         workTime = "";
         flag = false;
     } else {
-        workTitle = $("#tit").val();
-        Publisher = $("#person").val();
-        workTime = $("#demo").val();
+        workTitle = $("#idno").val();
+        Publisher = $("#username").val();
+        workTime = $("#create_time").val();
 
     }
-    // $.ajax({
-    //     type: "GET",
-    //     data: {id: workTitle, username: Publisher, createTime: workTime},
-    //     url: "http://localhost:8080/WorkRecord/SearchWork",
-    //     dataType: "json",
-    //     success: function (result) {
-    //         if (result) {
-    //             console.log(result.records)
-    //             var NoticeTableData = result.records;
-    //             $('#table').bootstrapTable("load", NoticeTableData);
-    //         }
-    //     }
-    // })
+    $.ajax({
+        type: "GET",
+        url: "/WorkRecord/SearchWork?id=" +workTitle + "&username=" + Publisher + "&create_time=" + workTime,
+        dataType: "json",
+        success: function (result) {
+            console.log(result)
+            if (result) {
+                $('#table').bootstrapTable('refresh');
+            }
+        }
+    })
 }
 
 function addWork() {
-    openlayer()
+    openlayer('add')
     currentID = "";
 }
 
 function editWork(id) {
-    openlayer()
+    openlayer(edit)
     currentID = id;
 }
 
@@ -145,7 +140,7 @@ function getCurrentID() {
     return currentID;
 }
 
-function openlayer() {
+function openlayer(option) {
     layer.open({
         type: 2,
         title: '通知信息',
@@ -156,7 +151,8 @@ function openlayer() {
         area: ['98%', '98%'],
         shadeClose: true,
         closeBtn: 2,
-        content: "http://localhost:8080/work_tail"
+       // content:" work_tail.html"
+         content: "/work_tail?option="+option
 
     });
 

@@ -61,7 +61,7 @@
         $('#saveWorkLog').click(function () {
             $.ajax({
                 type: "post",
-                url: "http://localhost:8080/common/addworkLog",
+                url: "/common/addworkLog",
                 data: {
                     id: $('#id').val(),
                     username: $('#username').val(),

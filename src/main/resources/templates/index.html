@@ -124,6 +124,7 @@
     </div>
 </div>
 <div class="exitDialog">
+    <span class = "test">北京欢迎您！</span>
     <div class="dialog-content">
         <div class="ui-dialog-icon"></div>
         <div class="ui-dialog-text">
@@ -146,7 +147,8 @@
 <script src="js/layer_v2.1/layer/layer.js"></script>
 <script type="text/javascript">
     sessionStorage.setItem("username", $('#user_name').text());
-
+   var text =  $(".test").html();
+   console.log(text.substring(0,2))
     function openlayer(id) {
         layer.open({
             type: 2,
